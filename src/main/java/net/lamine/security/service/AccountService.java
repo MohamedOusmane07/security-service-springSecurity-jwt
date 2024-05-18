@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AccountService {
     AppUser addNewUser(AppUser user);
-    AppRole AddNewRole(AppRole role);
+    AppRole addNewRole(AppRole role);
     void addRoleToUser(String username,String role);
     AppUser getUserByUsername(String username);
     List<AppUser> listUsers();

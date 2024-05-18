@@ -26,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AppRole AddNewRole(AppRole role) {
+    public AppRole addNewRole(AppRole role) {
         return roleRepository.save(role);
     }
 
