@@ -23,9 +23,9 @@ public class SecurityConfig  {
                 .csrf((csrf) -> csrf.disable())
                 .headers(headers -> headers
                         .frameOptions(frameOptions -> frameOptions
-                                .disable()))
-                .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().permitAll());
+                                .disable()));
+                //.authorizeHttpRequests((authorize) -> authorize
+                    //    .anyRequest().permitAll());
 
         return http.build();
     }

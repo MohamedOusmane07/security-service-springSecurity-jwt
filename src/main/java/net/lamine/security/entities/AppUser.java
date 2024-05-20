@@ -1,6 +1,7 @@
 package net.lamine.security.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +16,7 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String password;
     @ManyToMany(fetch = FetchType.EAGER)
     public Collection<AppRole> appRoles=new ArrayList<>(); //Des qu'on crée un user la liste est vide, pas null

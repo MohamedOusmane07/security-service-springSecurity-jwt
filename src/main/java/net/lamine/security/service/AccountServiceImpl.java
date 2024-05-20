@@ -4,6 +4,7 @@ import net.lamine.security.entities.AppRole;
 import net.lamine.security.entities.AppUser;
 import net.lamine.security.repositories.AppRoleRepository;
 import net.lamine.security.repositories.AppUserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,17 +12,20 @@ import java.util.List;
 @Service
 @Transactional
 public class AccountServiceImpl implements AccountService {
-    AppUserRepository userRepository;
-    AppRoleRepository roleRepository;
+    private AppUserRepository userRepository;
+    private AppRoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public AccountServiceImpl(AppUserRepository userRepository, AppRoleRepository roleRepository) {
+    public AccountServiceImpl(AppUserRepository userRepository, AppRoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public AppUser addNewUser(AppUser user) {
-
+        String pwd = passwordEncoder.encode(user.getPassword());
+        user.setPassword(passwordEncoder.encode(pwd));
         return userRepository.save(user);
     }
 
